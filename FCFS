@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <conio.h>
+
+void fcfs(int arr[], int head, int size) {
+    int seek_count = 0;
+    int distance, current_track;
+    int i;
+    for (i = 0; i < size; i++) {
+        current_track = arr[i];
+
+        // Calculate seek time
+        distance = abs(current_track - head);
+        seek_count += distance;
+
+        // Move the head to the current track
+        head = current_track;
+    }
+
+    printf("Total seek time: %d\n", seek_count);
+}
+
+int main() {
+    int n, head;
+    int arr[20];
+    int i;
+    printf("Enter the number of requests: ");
+    scanf("%d", &n);
+
+    printf("Enter the request queue:\n");
+    for (i = 0; i < n; i++) {
+	scanf("%d", &arr[i]);
+    }
+
+    printf("Enter the initial position of head: ");
+    scanf("%d", &head);
+
+    fcfs(arr, head, n);
+
+    getch(); // Waits for a key press before exiting
+    return 0;
+}
