@@ -1,0 +1,10 @@
+ Write shell scripts to Display OS version, release number, kernel version.
+
+1) display os version 
+$ echo "OS Version $(uname-a)"
+
+2) display release number
+$ echo "Release number $(lsb_release -r)"
+
+3) display kernel version
+$ echo "kernel Version $(uname -r)"
