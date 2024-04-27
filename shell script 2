@@ -1,0 +1,5 @@
+Write shell scripts to Display top 10 processes in descending order
+$ ps aux --sort -%cpu| head -11
+
+Display processes with highest memory usage
+$ ps aux --sort -%mem| head -10
