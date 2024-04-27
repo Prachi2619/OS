@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <conio.h>
+
+#define MAX_PROCESSES 10
+
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void sjf(int processes[], int n, int burst_times[]) {
+    // Sort processes based on burst time using bubble sort
+    int i;
+    int j;
+    for(i = 0; i < n - 1; i++) {
+	for(j = 0; j < n - i - 1; j++) {
+            if (burst_times[j] > burst_times[j + 1]) {
+                swap(&burst_times[j], &burst_times[j + 1]);
+                swap(&processes[j], &processes[j + 1]);
+            }
+        }
+    }
+
+    // Print the order of execution
+    printf("Order of execution:\n");
+    for (i = 0; i < n; i++) {
+        printf("P%d ", processes[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int n;
+    int i;
+    int processes[MAX_PROCESSES], burst_times[MAX_PROCESSES];
+
+    // Input the number of processes
+    printf("Enter the number of processes: ");
+    scanf("%d", &n);
+
+    // Input the burst times for each process
+    printf("Enter the burst times for each process:\n");
+    for (i = 0; i < n; i++) {
+        printf("Process %d: ", i + 1);
+        scanf("%d", &burst_times[i]);
+        processes[i] = i + 1; // Assign process IDs
+    }
+
+    // Call the SJF function
+    sjf(processes, n, burst_times);
+
+    getch(); // Waits for a key press before exiting
+    return 0;
+}
